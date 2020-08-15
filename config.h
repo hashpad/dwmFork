@@ -3,11 +3,11 @@
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
-static const unsigned int gappx     = 8;        /* gaps */
+static const unsigned int gappx     = 4;        /* gaps */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = {"monospace:size=16", "fontawesome:size=16"};
-static const char dmenufont[]       = "monospace:size=15";
+static const char *fonts[]          = {"monospace:size=14", "fontawesome:size=14"};
+static const char dmenufont[]       = "monospace:size=14";
 static const char col_gray1[]       = "#282726";
 static const char col_gray2[]       = "#b32d00";
 static const char col_gray3[]       = "#fb4934";
@@ -17,6 +17,11 @@ static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_cyan },
 	[SchemeSel]  = { col_gray4, col_gray1,  col_gray2},
+    [SchemeStatus]  = { col_gray3, col_gray1,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
+    [SchemeTagsSel]  = { col_gray4, col_cyan,  "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
+    [SchemeTagsNorm]  = { col_gray3, col_gray1,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
+    [SchemeInfoSel]  = {  col_gray3, col_gray1, col_cyan }, // infobar middle  selected {text,background,not used but cannot be empty}
+    [SchemeInfoNorm]  = { col_gray3, col_gray1,  "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
 };
 
 /* tagging */
@@ -36,12 +41,14 @@ static const Rule rules[] = {
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
-
+#include "fibonacci.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
+    { "[@]",      spiral },
+    { "[\\]",      dwindle },
 };
 
 /* key definitions */
@@ -95,7 +102,8 @@ static Key keys[] = {
 
 
 
-
+    { MODKEY,                       XK_r,      setlayout,      {.v = &layouts[3]} },
+    { MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[4]} },
 
 
 
