@@ -93,6 +93,7 @@ struct Client {
 	int basew, baseh, incw, inch, maxw, maxh, minw, minh;
 	int bw, oldbw;
 	unsigned int tags;
+    unsigned int switchtotag;
 	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen;
 	Client *next;
 	Client *snext;
@@ -139,6 +140,7 @@ typedef struct {
 	const char *instance;
 	const char *title;
 	unsigned int tags;
+    unsigned int switchtotag;
 	int isfloating;
 	int monitor;
 } Rule;
@@ -306,6 +308,11 @@ applyrules(Client *c)
 			for (m = mons; m && m->num != r->monitor; m = m->next);
 			if (m)
 				c->mon = m;
+            if (r->switchtotag) {
+                               Arg a = { .ui = r->tags };
+                               c->switchtotag = selmon->tagset[selmon->seltags];
+                               view(&a);
+                }
 		}
 	}
 	if (ch.res_class)
@@ -1061,6 +1068,8 @@ manage(Window w, XWindowAttributes *wa)
 	updatewindowtype(c);
 	updatesizehints(c);
 	updatewmhints(c);
+    c->x = c->mon->mx + (c->mon->mw - WIDTH(c)) / 2;
+    c->y = c->mon->my + (c->mon->mh - HEIGHT(c)) / 2;
 	XSelectInput(dpy, w, EnterWindowMask|FocusChangeMask|PropertyChangeMask|StructureNotifyMask);
 	grabbuttons(c, 0);
 	if (!c->isfloating)
@@ -1799,6 +1808,10 @@ unmanage(Client *c, int destroyed)
 	focus(NULL);
 	updateclientlist();
 	arrange(m);
+    if (c->switchtotag) {
+               Arg a = { .ui = c->switchtotag };
+               view(&a);
+       }
 }
 
 void

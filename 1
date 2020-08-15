@@ -32,10 +32,11 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask  switch to tag   isfloating   monitor */
-	{ "Chromium",  NULL,       NULL,       1 << 1,        1,              0,           -1 },
-	{ "discord",   NULL,       NULL,       1 << 2,        0,              0,           -1 },
-	{ "Eclipse",   NULL,       NULL,       1 << 4,        1,              0,           -1 },
+	/* class      instance    title       tags mask     isfloating   monitor */
+	{ "chromium",  NULL,       NULL,       2,            0,           -1 },
+	{ "discord",   NULL,       NULL,       3,            0,           -1 },
+	{ "cmus",      NULL,       NULL,       4,            1,           -1 },
+	{ "eclipse",   NULL,       NULL,       5,            1,           -1 },
 };
 
 /* layout(s) */
@@ -43,7 +44,6 @@ static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] 
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 #include "fibonacci.c"
-#include "shiftview.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
@@ -102,8 +102,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
  */
 
-    { SUPERKEY,              XK_Tab,           shiftview,  { .i = +1 } },
-    //{ MODKEY,              XK_u,           view_adjacent,  { .i = -1 } },
+
 
     { MODKEY,                       XK_r,      setlayout,      {.v = &layouts[3]} },
     { MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[4]} },
