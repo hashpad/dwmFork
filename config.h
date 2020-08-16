@@ -46,11 +46,11 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 #include "shiftview.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
+    { "[\\]",      dwindle },
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
     { "[@]",      spiral },
-    { "[\\]",      dwindle },
 };
 
 /* key definitions */
@@ -102,8 +102,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
  */
 
-    { SUPERKEY,              XK_Tab,           shiftview,  { .i = +1 } },
-    //{ MODKEY,              XK_u,           view_adjacent,  { .i = -1 } },
+    { SUPERKEY,              XK_Right,           shiftview,  { .i = +1 } },
+    { SUPERKEY,              XK_Left,            shiftview,  { .i = -1 } },
 
     { MODKEY,                       XK_r,      setlayout,      {.v = &layouts[3]} },
     { MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[4]} },
