@@ -8,24 +8,23 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = {"monospace:size=14", "fontawesome:size=14"};
 static const char dmenufont[]       = "monospace:size=14";
-static const char col_gray1[]       = "#282726";
-static const char col_gray2[]       = "#b32d00";
-static const char col_gray3[]       = "#fb4934";
-static const char col_gray4[]       = "#fb4934";
-static const char col_cyan[]        = "#c7d3d4";
+static const char red[]       = "#c70039";
+static const char gray[]       = "#727974";
+static const char black[]       = "#222222";
+static const char white[]   = "#ffffff";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_cyan },
-	[SchemeSel]  = { col_gray4, col_gray1,  col_gray2},
-    [SchemeStatus]  = { col_gray3, col_gray1,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
-    [SchemeTagsSel]  = { col_gray4, col_cyan,  "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
-    [SchemeTagsNorm]  = { col_gray3, col_gray1,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
-    [SchemeInfoSel]  = {  col_gray3, col_gray1, col_cyan }, // infobar middle  selected {text,background,not used but cannot be empty}
-    [SchemeInfoNorm]  = { col_gray3, col_gray1,  "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
+	[SchemeNorm] = { white, red, "#000000" },
+	[SchemeSel]  = { white, red,  "#000000"},
+    [SchemeStatus]  = { gray, black,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
+    [SchemeTagsSel]  = { white, red,  "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
+    [SchemeTagsNorm]  = { gray, black,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
+    [SchemeInfoSel]  = {  white, red, "#000000" }, // infobar middle  selected {text,background,not used but cannot be empty}
+    [SchemeInfoNorm]  = { gray, black,  "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
 };
 
 /* tagging */
-static const char *tags[] = { "\uf120", "\uf268", "\uf392", "\uf001", "\uf4e4" };
+static const char *tags[] = { "\uf120", "\uf268", "\uf392", "\uf04b", "\uf121" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -67,7 +66,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", black, "-nf", gray, "-sb", red, "-sf", white, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
