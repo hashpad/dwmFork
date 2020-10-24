@@ -36,6 +36,7 @@ static const Rule rules[] = {
 	{ "discord",          NULL,       NULL,       1 << 2,        0,              0,           -1 },
 	{ "code-oss",         NULL,       NULL,       1 << 3,        1,              0,           -1 },
 	{ "Anki",             NULL,       NULL,       1 << 4,        1,              0,           -1 },
+	{ "urxvt:*cmus",      NULL,       NULL,       1 << 5,        1,              0,           -1 },
 };
 
 /* layout(s) */
@@ -59,7 +60,8 @@ static const Layout layouts[] = {
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
-	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
+	{ SUPERKEY,                     KEY,      tag,            {.ui = 1 << TAG} }, \
+	{ SUPERKEY,                     KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
