@@ -98,8 +98,10 @@ static char *colors[][3] = {
 // static const char *tags[] = { "󱔗", "󰨊", "󱃖", "󰾔", "󰇮", "󰃂", "󰌢", "�
 // ", "󰙯", "󰭩"};
 //static const char *tags[] = {"󱔗¹", "󰨊²", "󱃖³", "󰾔⁴", "󰕧⁵", "󰇮⁶", "󰃂⁷", "󰌢⁸", "󰁫⁹"};
-static const char *tags[] = {"doc¹", "sh²", "dev³", "www⁴", "media⁵", "mail⁶", "mus⁷", "vbox⁸", "pomo⁹"};
-static const char *tagsalt[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
+//static const char *tags[] = {"doc¹", "sh²", "dev³", "www⁴", "media⁵", "mail⁶", "mus⁷", "vbox⁸", "pomo⁹"};
+//static const char *tagsalt[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
+static const char *tags[] = {"doc¹", "sh²", "www³", "mus⁴", "mpv⁵"};
+static const char *tagsalt[] = {"1", "2", "3", "4", "5"};
 
 static const Rule rules[] = {
     /* xprop(1):
@@ -113,15 +115,16 @@ static const Rule rules[] = {
     {"Evince", NULL, NULL, 1 << 0, 1, 0, -1},
     {"Anki", NULL, NULL, 1 << 0, 1, 0, -1},
     {NULL, NULL, "st_to_tag", 1 << 1, 1, 0, -1},
-    {"Chromium", NULL, NULL, 1 << 3, 1, 0, -1},
+    {"Chromium", NULL, NULL, 1 << 2, 1, 0, -1},
+    {"firefox", NULL, NULL, 1 << 2, 1, 0, -1},
     {"mpv", NULL, NULL, 1 << 4, 0, 0, -1},
-    {"Thunderbird", NULL, NULL, 1 << 5, 1, 0, -1},
-    {NULL, NULL, "cmus", 1 << 6, 1, 0, -1},
-    {NULL, NULL, "vis", 1 << 6, 1, 0, -1},
-    {NULL, NULL, "clyrics", 1 << 6, 1, 0, -1},
+    //{"Thunderbird", NULL, NULL, 1 << 5, 1, 0, -1},
+    {NULL, NULL, "cmus", 1 << 3, 1, 0, -1},
+    {NULL, NULL, "vis", 1 << 3, 1, 0, -1},
+    {NULL, NULL, "clyrics", 1 << 3, 1, 0, -1},
     {"Pavucontrol", NULL, NULL, 0, 0, 1, -1},
-    {"VirtualBox Manager", NULL, NULL, 1 << 7, 1, 0, -1},
-    {"Gnome-pomodoro", NULL, NULL, 1 << 8, 1, 0, -1},
+    //{"VirtualBox Manager", NULL, NULL, 1 << 7, 1, 0, -1},
+    //{"Gnome-pomodoro", NULL, NULL, 1 << 8, 1, 0, -1},
     //{ "Lutris",             NULL,       NULL,                 1 << 7, 1, 0, -1
     //}, { "discord",            NULL,       NULL,                 1 << 8, 0, 0,
     //-1 }, { "Synergy",            NULL,       NULL,                 1 << 9, 0,
