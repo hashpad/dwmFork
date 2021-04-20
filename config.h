@@ -19,10 +19,14 @@ static const int user_bh = 24; /* 0 means that dwm will calculate bar height, >=
 static const int showbar = 1;  /* 0 means no bar */
 static const int topbar = 0;   /* 0 means bottom bar */
 static const char *fonts[] = {
-    "Misc Tamsyn:Unifont:size=14",
-    "Material Design Icons:Regular:pixelsize=16:antialias=true",
-    "NotoColorEmoji:pixelsize=14:antialias=true"};
+    "Iosevka Nerd Font:Regular:pixelsize=18:antialias=true",
+    "Material Design Icons:Regular:pixelsize=20:antialias=true",
+    "NotoColorEmoji:pixelsize=18:antialias=true"};
 
+//static const char *fonts[] = {
+    //"Misc Tamsyn:Unifont:size=14",
+    //"Material Design Icons:Regular:pixelsize=16:antialias=true",
+    //"NotoColorEmoji:pixelsize=14:antialias=true"};
  //static const char *fonts[] = {
 //"Hack Nerd Font:Regular:size=10",
 //"Material Design Icons:Regular:pixelsize=16:antialias=true",
@@ -100,8 +104,8 @@ static char *colors[][3] = {
 //static const char *tags[] = {"󱔗¹", "󰨊²", "󱃖³", "󰾔⁴", "󰕧⁵", "󰇮⁶", "󰃂⁷", "󰌢⁸", "󰁫⁹"};
 //static const char *tags[] = {"doc¹", "sh²", "dev³", "www⁴", "media⁵", "mail⁶", "mus⁷", "vbox⁸", "pomo⁹"};
 //static const char *tagsalt[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
-static const char *tags[] = {"doc¹", "sh²", "www³", "mus⁴", "mpv⁵"};
-static const char *tagsalt[] = {"1", "2", "3", "4", "5"};
+static const char *tags[] = {"term¹", "term²", "term³", "IDE⁴","www⁵", "doc⁶", "mus⁷", "mpv⁸"};
+static const char *tagsalt[] = {"1", "2", "3", "4", "5", "6", "7", "8"};
 
 static const Rule rules[] = {
     /* xprop(1):
@@ -112,16 +116,17 @@ static const Rule rules[] = {
        tag   isfloating   monitor */
     {"Nitrogen", NULL, NULL, 0, 0, 1, -1},
     {"Xfce4-appfinder", NULL, NULL, 0, 0, 1, -1},
-    {"Evince", NULL, NULL, 1 << 0, 1, 0, -1},
-    {"Anki", NULL, NULL, 1 << 0, 1, 0, -1},
-    {NULL, NULL, "st_to_tag", 1 << 1, 1, 0, -1},
-    {"Chromium", NULL, NULL, 1 << 2, 1, 0, -1},
-    {"firefox", NULL, NULL, 1 << 2, 1, 0, -1},
-    {"mpv", NULL, NULL, 1 << 4, 0, 0, -1},
+    {"Evince", NULL, NULL, 1 << 5, 1, 0, -1},
+    {"Anki", NULL, NULL, 1 << 5, 1, 0, -1},
+    {NULL, NULL, "termite_to_tag", 1 << 2, 1, 0, -1},
+    {"Eclipse", NULL, NULL, 1 << 3, 1, 0, -1},
+    {"Chromium", NULL, NULL, 1 << 4, 1, 0, -1},
+    {"firefox", NULL, NULL, 1 << 4, 1, 0, -1},
+    {"mpv", NULL, NULL, 1 << 7, 0, 0, -1},
     //{"Thunderbird", NULL, NULL, 1 << 5, 1, 0, -1},
-    {NULL, NULL, "cmus", 1 << 3, 1, 0, -1},
-    {NULL, NULL, "vis", 1 << 3, 1, 0, -1},
-    {NULL, NULL, "clyrics", 1 << 3, 1, 0, -1},
+    {NULL, NULL, "cmus", 1 << 6, 1, 0, -1},
+    {NULL, NULL, "vis", 1 << 6, 1, 0, -1},
+    {NULL, NULL, "clyrics", 1 << 6, 1, 0, -1},
     {"Pavucontrol", NULL, NULL, 0, 0, 1, -1},
     //{"VirtualBox Manager", NULL, NULL, 1 << 7, 1, 0, -1},
     //{"Gnome-pomodoro", NULL, NULL, 1 << 8, 1, 0, -1},
@@ -171,7 +176,7 @@ static char dmenumon[2] =
 // fgSchemeNorm, "-sb", bdSchemeSel,  "-sf",
 // fgSchemeSel,  NULL};
 static const char *dmenucmd[] = {"dmenu_run", NULL};
-static const char *termcmd[] = {"st", "-e", "tmux"};
+static const char *termcmd[] = {"termite"};
 //static const char *termcmd[] = {"st"};
 static Key keys[] = {
     /* modifier                     key        function        argument */
@@ -179,8 +184,8 @@ static Key keys[] = {
     {ShiftMask | ControlMask, XK_t, spawn, {.v = termcmd}},
     //{ControlMask, XK_t, togglebar, {0}},
     {MODKEY, XK_Tab, focusstack, {.i = +1}},
-    {MODKEY, XK_Up, incnmaster, {.i = +1}},
-    {MODKEY, XK_Down, incnmaster, {.i = -1}},
+    {ControlMask | MODKEY, XK_k, incnmaster, {.i = +1}},
+    {ControlMask | MODKEY, XK_j, incnmaster, {.i = -1}},
     {MODKEY, XK_h, setmfact, {.f = -0.05}},
     {MODKEY, XK_l, setmfact, {.f = +0.05}},
 
