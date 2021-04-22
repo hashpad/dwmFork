@@ -147,9 +147,12 @@ static const Layout layouts[] = {
     /* symbol     arrange function */
     {"󰓌", tile}, /* first entry is default */
     {"[M]", monocle},
-    //{"󰣚", dwindle},
-    //{"󰉧", NULL}, [> no layout function means floating behavior <]
-    //{"󰁥", spiral},
+    {"󰣚", dwindle}, /* Fibonacci */
+
+    //no layout function means floating behavior
+    {"󰉧", NULL}, 
+    
+    {"󰁥", spiral},
 };
 
 /* key definitions */
