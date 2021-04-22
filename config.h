@@ -145,11 +145,11 @@ static const int resizehints =
 #include "shiftview.c"
 static const Layout layouts[] = {
     /* symbol     arrange function */
-    {"[]=", tile}, /* first entry is default */
-    {"[\\]", dwindle},
-    {"><>", NULL}, /* no layout function means floating behavior */
+    {"󰓌", tile}, /* first entry is default */
     {"[M]", monocle},
-    {"[@]", spiral},
+    //{"󰣚", dwindle},
+    //{"󰉧", NULL}, [> no layout function means floating behavior <]
+    //{"󰁥", spiral},
 };
 
 /* key definitions */
@@ -199,6 +199,7 @@ static Key keys[] = {
     {MODKEY, XK_t, setlayout, {.v = &layouts[0]}},
     {MODKEY, XK_f, setlayout, {.v = &layouts[1]}},
     {MODKEY, XK_m, setlayout, {.v = &layouts[2]}},
+    {MODKEY | ShiftMask, XK_f, fullscreen, {0} },
     {MODKEY, XK_space, setlayout, {0}},
     {MODKEY | ShiftMask, XK_k, togglefloating, {0}},
     {MODKEY, XK_0, view, {.ui = ~0}},
