@@ -3,13 +3,14 @@
 /* appearance */
 static const int vertpad = 0;
 static const int sidepad = 0;
-static const unsigned int gappx = 0;    /* gaps */
-static const unsigned int borderpx = 1; /* border pixel of windows */
+static const unsigned int gappx = 4;    /* gaps */
+static const unsigned int borderpx = 4; /* border pixel of windows */
 static const unsigned int snap = 0;     /* snap pixel */
 static const unsigned int systraypinning =
     0; /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor
           X */
-static const unsigned int systrayspacing = 2; /* systray spacing */
+static const unsigned int systraylastspacing = 8; /* spacing before systray, after status */
+static const unsigned int systrayspacing = 1; /* systray spacing */
 static const int systraypinningfailfirst =
     1; /* 1: if pinning fails, display systray on the first monitor, False:
           display systray on the last monitor*/
@@ -18,10 +19,11 @@ static const int user_bh = 24; /* 0 means that dwm will calculate bar height, >=
                                   1 means dwm will user_bh as bar height */
 static const int showbar = 1;  /* 0 means no bar */
 static const int topbar = 0;   /* 0 means bottom bar */
-static const char *fonts[] = {
-    "Iosevka Nerd Font:Regular:pixelsize=18:antialias=true",
-    "Material Design Icons:Regular:pixelsize=20:antialias=true",
-    "NotoColorEmoji:pixelsize=18:antialias=true"};
+static const char *fonts[] = {"Ubuntu Regular:Regular:pixelsize=11:antialias=true"};
+//static const char *fonts[] = {
+    //"Iosevka Nerd Font:Regular:pixelsize=14:antialias=true",
+    //"Material Design Icons Desktop:Regular:pixelsize=16:antialias=true",
+    //"NotoColorEmoji:pixelsize=14:antialias=true"};
 
 //static const char *fonts[] = {
     //"Misc Tamsyn:Unifont:size=14",
@@ -104,8 +106,10 @@ static char *colors[][3] = {
 //static const char *tags[] = {"󱔗¹", "󰨊²", "󱃖³", "󰾔⁴", "󰕧⁵", "󰇮⁶", "󰃂⁷", "󰌢⁸", "󰁫⁹"};
 //static const char *tags[] = {"doc¹", "sh²", "dev³", "www⁴", "media⁵", "mail⁶", "mus⁷", "vbox⁸", "pomo⁹"};
 //static const char *tagsalt[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
-static const char *tags[] = {"term¹", "term²", "term³", "IDE⁴","www⁵", "doc⁶", "mus⁷", "mpv⁸"};
-static const char *tagsalt[] = {"1", "2", "3", "4", "5", "6", "7", "8"};
+static const char *tags[] = {"d¹", "t²", "w³", "m⁴","e⁵"};
+static const char *tagsalt[] = {"1", "2", "3", "4", "5"};
+//static const char *tags[] = {"doc¹", "term²", "term³", "IDE⁴","www⁵", "mus⁶", "mpv⁷", "mes⁸", "pomo⁹"};
+//static const char *tagsalt[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
 
 static const Rule rules[] = {
     /* xprop(1):
@@ -114,22 +118,24 @@ static const Rule rules[] = {
      */
     /* class                instance    title              tags mask  switch to
        tag   isfloating   monitor */
-    {"Nitrogen", NULL, NULL, 0, 0, 1, -1},
-    {"Xfce4-appfinder", NULL, NULL, 0, 0, 1, -1},
-    {"Evince", NULL, NULL, 1 << 5, 1, 0, -1},
-    {"Anki", NULL, NULL, 1 << 5, 1, 0, -1},
-    {NULL, NULL, "termite_to_tag", 1 << 2, 1, 0, -1},
-    {"Eclipse", NULL, NULL, 1 << 3, 1, 0, -1},
-    {"Chromium", NULL, NULL, 1 << 4, 1, 0, -1},
-    {"firefox", NULL, NULL, 1 << 4, 1, 0, -1},
-    {"mpv", NULL, NULL, 1 << 7, 0, 0, -1},
-    //{"Thunderbird", NULL, NULL, 1 << 5, 1, 0, -1},
-    {NULL, NULL, "cmus", 1 << 6, 1, 0, -1},
-    {NULL, NULL, "vis", 1 << 6, 1, 0, -1},
-    {NULL, NULL, "clyrics", 1 << 6, 1, 0, -1},
+    //{"Nitrogen", NULL, NULL, 0, 0, 1, -1},
+    //{"Xfce4-appfinder", NULL, NULL, 0, 0, 1, -1},
+    {"mupdf", NULL, NULL, 1 << 0, 1, 0, -1},
+    {"Anki", NULL, NULL, 1 << 0, 1, 0, -1},
+    {NULL, NULL, "terminator_to_tag", 1 << 1, 1, 0, -1},
+    //{"Eclipse", NULL, NULL, 1 << 3, 1, 0, -1},
+    {"Chromium", NULL, NULL, 1 << 2, 1, 0, -1},
+    {"firefox", NULL, NULL, 1 << 2, 1, 0, -1},
+    {NULL, NULL, "cmus", 1 << 3, 1, 0, -1},
+    {NULL, NULL, "vis", 1 << 3, 1, 0, -1},
+    {NULL, NULL, "clyrics", 1 << 3, 1, 0, -1},
+    {"Thunderbird", NULL, NULL, 1 << 4, 1, 0, -1},
+    {"Discord", NULL, NULL, 1 << 4, 1, 0, -1},
+    {"TelegramDesktop", NULL, NULL, 1 << 4, 1, 0, -1},
+    //{"Gnome-pomodoro", NULL, NULL, 1 << 8, 1, 0, -1},
+    {"mpv", NULL, NULL, 0, 0, 1, -1},
     {"Pavucontrol", NULL, NULL, 0, 0, 1, -1},
     //{"VirtualBox Manager", NULL, NULL, 1 << 7, 1, 0, -1},
-    //{"Gnome-pomodoro", NULL, NULL, 1 << 8, 1, 0, -1},
     //{ "Lutris",             NULL,       NULL,                 1 << 7, 1, 0, -1
     //}, { "discord",            NULL,       NULL,                 1 << 8, 0, 0,
     //-1 }, { "Synergy",            NULL,       NULL,                 1 << 9, 0,
@@ -145,14 +151,22 @@ static const int resizehints =
 #include "shiftview.c"
 static const Layout layouts[] = {
     /* symbol     arrange function */
-    {"󰓌", tile}, /* first entry is default */
     {"[M]", monocle},
-    {"󰣚", dwindle}, /* Fibonacci */
+    {"[T]", tile}, /* first entry is default */
+    {"[Fi]", dwindle}, /* Fibonacci */
 
     //no layout function means floating behavior
-    {"󰉧", NULL}, 
+    {"[Fl]", NULL}, 
     
-    {"󰁥", spiral},
+    {"[S]", spiral},
+    //{"[M]", monocle},
+    //{"󰓌", tile}, [> first entry is default <]
+    //{"󰣚", dwindle}, [> Fibonacci <]
+
+    ////no layout function means floating behavior
+    //{"󰉧", NULL}, 
+    
+    //{"󰁥", spiral},
 };
 
 /* key definitions */
@@ -179,14 +193,16 @@ static char dmenumon[2] =
 // fgSchemeNorm, "-sb", bdSchemeSel,  "-sf",
 // fgSchemeSel,  NULL};
 static const char *dmenucmd[] = {"dmenu_run", NULL};
-static const char *termcmd[] = {"termite"};
+static const char *termcmd[] = {"terminator"};
 //static const char *termcmd[] = {"st"};
 static Key keys[] = {
     /* modifier                     key        function        argument */
-    {ControlMask | MODKEY, XK_space, spawn, {.v = dmenucmd}},
-    {ShiftMask | ControlMask, XK_t, spawn, {.v = termcmd}},
+    {SUPERKEY, XK_space, spawn, {.v = dmenucmd}},
+    {ShiftMask | ControlMask | MODKEY, XK_t, spawn, {.v = termcmd}},
     //{ControlMask, XK_t, togglebar, {0}},
     {MODKEY, XK_Tab, focusstack, {.i = +1}},
+    {ControlMask | ShiftMask | SUPERKEY, XK_j, focusstack, {.i = +1}},
+    {ControlMask | ShiftMask | SUPERKEY, XK_k, focusstack, {.i = -1}},
     {ControlMask | MODKEY, XK_k, incnmaster, {.i = +1}},
     {ControlMask | MODKEY, XK_j, incnmaster, {.i = -1}},
     {MODKEY, XK_h, setmfact, {.f = -0.05}},

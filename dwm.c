@@ -1127,7 +1127,7 @@ unsigned int getsystraywidth() {
   if (showsystray)
     for (i = systray->icons; i; w += i->w + systrayspacing, i = i->next)
       ;
-  return w ? w + systrayspacing : 1;
+  return w ? w + systraylastspacing : 1;
 }
 
 int gettextprop(Window w, Atom atom, char *text, unsigned int size) {
@@ -2504,7 +2504,7 @@ void updatesystray(void) {
       return;
     }
   }
-  for (w = 0, i = systray->icons; i; i = i->next) {
+  for (w = systraylastspacing, i = systray->icons; i; i = i->next) {
     /* make sure the background color stays the same */
     wa.background_pixel = scheme[SchemeNorm][ColBg].pixel;
     XChangeWindowAttributes(dpy, i->win, CWBackPixel, &wa);
