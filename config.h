@@ -4,7 +4,7 @@
 static const int vertpad = 0;
 static const int sidepad = 0;
 static const unsigned int gappx = 4;    /* gaps */
-static const unsigned int borderpx = 4; /* border pixel of windows */
+static const unsigned int borderpx = 2; /* border pixel of windows */
 static const unsigned int snap = 0;     /* snap pixel */
 static const unsigned int systraypinning =
     0; /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor
@@ -15,10 +15,10 @@ static const int systraypinningfailfirst =
     1; /* 1: if pinning fails, display systray on the first monitor, False:
           display systray on the last monitor*/
 static const int showsystray = 1; /* 0 means no systray */
-static const int user_bh = 24; /* 0 means that dwm will calculate bar height, >=
+static const int user_bh = 27; /* 0 means that dwm will calculate bar height, >=
                                   1 means dwm will user_bh as bar height */
 static const int showbar = 1;  /* 0 means no bar */
-static const int topbar = 0;   /* 0 means bottom bar */
+static const int topbar = 1;   /* 0 means bottom bar */
 static const char *fonts[] = {"Ubuntu Regular:Regular:pixelsize=11:antialias=true"};
 //static const char *fonts[] = {
     //"Iosevka Nerd Font:Regular:pixelsize=14:antialias=true",
@@ -110,6 +110,12 @@ static const char *tags[] = {"d¹", "t²", "w³", "m⁴","e⁵"};
 static const char *tagsalt[] = {"1", "2", "3", "4", "5"};
 //static const char *tags[] = {"doc¹", "term²", "term³", "IDE⁴","www⁵", "mus⁶", "mpv⁷", "mes⁸", "pomo⁹"};
 //static const char *tagsalt[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
+
+static const unsigned int ulinepad	= 5;	/* horizontal padding between the underline and tag */
+static const unsigned int ulinestroke	= 2;	/* thickness / height of the underline */
+static const unsigned int ulinevoffset	= 0;	/* how far above the bottom of the bar the line should appear */
+static const int ulineall 		= 0;	/* 1 to show underline on all tags, 0 for just the active ones */
+
 
 static const Rule rules[] = {
     /* xprop(1):
